@@ -8,7 +8,31 @@
   apt: upgrade=yes force_apt_get=yes
   become: true
   become_method: sudo
-  
+
+- name: "Add kali repository key"
+  ansible.builtin.apt_key:
+    url: https://archive.kali.org/archive-key.asc
+    state: present
+  become: true
+  become_method: sudo
+
+- name: "Add kali repository"
+  ansible.builtin.apt_repository:
+    repo: deb http://http.kali.org/kali kali-rolling main contrib non-free non-free-firmware
+    state: present
+  become: true
+  become_method: sudo
+
+- name: "Create priority file so kali doesn't change anything on the system"
+  copy: 
+    dest: "/etc/apt/preferences.d/kali.pref" 
+    content: |
+      Package: *
+      Pin: release a=kali-rolling
+      Pin-Priority: 50
+  become: true
+  become_method: sudo
+
 - name: "Installing Packages"
   package:
     name:
@@ -17,6 +41,56 @@
       - ntpdate
       - flameshot
       - exiftool
+      - gdb
+      - git
+      - pandoc
+      - build-essential
+      - libpcap-dev
+      - libusb-1.0-0-dev
+      - libnetfilter-queue-dev
+      - libglib2.0-dev
+      - wireless-tools
+      - aircrack-ng
+      - tshark
+      - reaver
+      - bully
+      - cowpatty
+      - gcc
+      - make
+      - cewl
+      - dos2unix
+      - htop
+      - open-iscsi
+      - nfs-common
+      - rlwrap
+      - crunch
+      - windows-binaries
+      - powershell
+      - jq
+      - xdotool
+      - eyewitness
+      - neovim
+      - p7zip-full
+      - cifs-utils
+      - dnsmasq
+      - dnsutils
+      - net-tools
+      - tmux
+      - build-essential
+      - ldap-utils
+      - smbclient
+      - chromium
+      - chromium-common
+      - dos2unix
+      - apt-transport-https
+      - masscan
+      - sshuttle
+      - flameshot
+      - openssl
+      - neo4j
+      - mingw-w64
+      - dnsrecon
+      - bat
     state: latest
   become: true
   become_method: sudo
