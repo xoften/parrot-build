@@ -9,19 +9,15 @@
     src: "{{ role_path }}/files/color.theme"
     dest: "/usr/share/xfce4/terminal/colorschemes/color.theme"
 
-- name: "Add color to terminal"
-  copy:
-    src: "{{ role_path }}/files/color.theme"
-    dest: "/usr/share/xfce4/terminal/colorschemes/color.theme"
+- name: "Add colorSSSSSSS to terminal"
+  become: true
+  become_user: root
+  become_method: sudo
+  shell: whoami
 
-- name: "set up bash for current user"
-  become: no
-  vars:
-    the_user: "{{ ansible_user_id }}"
-  tasks:
-    - name: "change user shell to zsh" 
-      become: yes
-      user:
-        name: "{{ the_user }}"
-        shell: /bin/bash
-      become_method: sudo
+- name: "change user shell to bash"
+  become: true
+  become_method: sudo
+  user:
+    name: "user"
+    shell: /bin/bash

@@ -12,4 +12,4 @@
 - name: "Install coercer in virtual enviroment"
   ansible.builtin.pip:
     name: coercer
-    virtualenv: /tools/coercer
+    virtualenv: "{{(lookup('env','HOME'))}}/tools/coercer"
