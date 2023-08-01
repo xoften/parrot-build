@@ -4,16 +4,33 @@
     src: "{{ role_path }}/files/.bashrc"
     dest: "{{ ansible_env.HOME }}"
 
+- name: "Add wallpaper to system"
+  become: true
+  become_method: sudo
+  copy:
+    src: "{{ role_path }}/files/wallpaper.jpg"
+    dest: "/usr/share/images/wallpaper.jpg"
+
+- name: "Change lightdm"
+  become: true
+  become_method: sudo
+  copy:
+    src: "{{ role_path }}/files/lightdm-gtk-greeter.conf"
+    dest: "/etc/lightdm/lightdm-gtk-greeter.conf"
+
 - name: "Add color to terminal"
+  become: true
+  become_method: sudo
   copy:
     src: "{{ role_path }}/files/color.theme"
     dest: "/usr/share/xfce4/terminal/colorschemes/color.theme"
 
-- name: "Add colorSSSSSSS to terminal"
+- name: "Add qterminal.ini"
   become: true
-  become_user: root
   become_method: sudo
-  shell: whoami
+  copy:
+    src: "{{ role_path }}/files/qterminal.ini"
+    dest: "/usr/share/xfce4/terminal/colorschemes/color.theme"
 
 - name: "change user shell to bash"
   become: true

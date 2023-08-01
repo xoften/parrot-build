@@ -13,3 +13,9 @@
   ansible.builtin.pip:
     name: coercer
     virtualenv: "{{(lookup('env','HOME'))}}/tools/coercer"
+
+- name: "test"
+  ansible.builtin.pip:
+    name: coercer
+    msg: "{{ name.name }}"
+    

@@ -68,7 +68,7 @@
       - mingw-w64
       - dnsrecon
       - jsbeautifier
-      
+      - responder
     state: latest
   become: true
   become_method: sudo

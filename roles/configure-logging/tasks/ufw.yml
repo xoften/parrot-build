@@ -1,4 +1,18 @@
 ---
+- name: "Installing rsyslog"
+  become: true
+  become_method: sudo
+  apt: 
+    name: rsyslog
+    state: present
+
+- name: "Installing ufw"
+  become: true
+  become_method: sudo
+  apt: 
+    name: ufw
+    state: present
+
 - name: "Enable rsyslog service"
   service:
     name: rsyslog

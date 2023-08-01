@@ -1,18 +1,27 @@
 ---
-- name: "install Kerbrute"
+- name: "Installing Kerbrute"
   shell: go install github.com/ropnop/kerbrute@master
 
-- name: "install ffuf"
+- name: "Installing ffuf"
   shell: go install -v github.com/ffuf/ffuf@latest
 
-- name: "install Byp4xx"
+- name: "Installing Byp4xx"
   shell: go install github.com/lobuhi/byp4xx@latest
 
-- name: "install nuclei"
+- name: "Installing nuclei"
   shell: go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
 
-- name: "install nmap-formatter"
+- name: "Installing nmap-formatter"
   shell: go install github.com/vdjagilev/nmap-formatter@latest
 
+- name: "Installing subfinder"
+  shell: go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
 
-  
+- name: "Installing Naabu"
+  package: 
+    name: 
+      - libpcap-dev
+  shell: go install -v github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
+
+- name: "Installing httpx"
+  shell: go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
