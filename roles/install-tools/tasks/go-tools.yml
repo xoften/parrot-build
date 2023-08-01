@@ -1,0 +1,14 @@
+---
+- name: "install Kerbrute"
+  shell: go install github.com/ropnop/kerbrute@master
+
+- name: "install ffuf"
+  shell: go install -v github.com/ffuf/ffuf@latest
+
+- name: "install Byp4xx"
+  shell: go install github.com/lobuhi/byp4xx@latest
+
+- name: "install nuclei"
+  shell: go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
+
+  

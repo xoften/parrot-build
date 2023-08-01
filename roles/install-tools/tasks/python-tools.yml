@@ -8,3 +8,8 @@
     - { name: 'impacket', url: 'git+https://github.com/fortra/impacket.git' }
     - { name: 'crackmapexec', url: 'git+https://github.com/mpgn/CrackMapExec.git' }
     - { name: 'certipy-ad', url: 'git+https://github.com/ly4k/Certipy.git' }
+
+- name: "Install coercer in virtual enviroment"
+  ansible.builtin.pip:
+    name: coercer
+    virtualenv: /tools/coercer
