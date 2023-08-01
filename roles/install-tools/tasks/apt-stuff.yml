@@ -67,6 +67,8 @@
       - neo4j
       - mingw-w64
       - dnsrecon
+      - jsbeautifier
+      
     state: latest
   become: true
   become_method: sudo
