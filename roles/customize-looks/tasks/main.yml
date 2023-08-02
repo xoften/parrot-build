@@ -4,33 +4,50 @@
     src: "{{ role_path }}/files/.bashrc"
     dest: "{{ ansible_env.HOME }}"
 
+- name: "Add settings to visual studio code"
+  copy:
+    src: "{{ role_path }}/files/settings.json"
+    dest: "{{ ansible_env.HOME }}.config/Code/User/settings.json"
+
 - name: "Add wallpaper to system"
-  become: true
-  become_method: sudo
   copy:
     src: "{{ role_path }}/files/wallpaper.jpg"
     dest: "/usr/share/images/wallpaper.jpg"
-
-- name: "Change lightdm"
+    owner: root
+    group: root
+    mode: 0755
   become: true
   become_method: sudo
+
+- name: "Change lightdm"
   copy:
     src: "{{ role_path }}/files/lightdm-gtk-greeter.conf"
     dest: "/etc/lightdm/lightdm-gtk-greeter.conf"
-
-- name: "Add color to terminal"
+    owner: root
+    group: root
+    mode: 0755
   become: true
   become_method: sudo
+
+- name: "Add color to terminal"
   copy:
     src: "{{ role_path }}/files/color.theme"
     dest: "/usr/share/xfce4/terminal/colorschemes/color.theme"
-
-- name: "Add qterminal.ini"
+    owner: root
+    group: root
+    mode: 0755
   become: true
   become_method: sudo
+
+- name: "Add qterminal.ini"
   copy:
     src: "{{ role_path }}/files/qterminal.ini"
     dest: "/usr/share/xfce4/terminal/colorschemes/color.theme"
+    owner: root
+    group: root
+    mode: 0755
+  become: true
+  become_method: sudo
 
 - name: "change user shell to bash"
   become: true

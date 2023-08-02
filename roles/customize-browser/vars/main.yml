@@ -1,5 +1,5 @@
 ---
-burpsuite_extras_dir: "/usr/local/lib/BurpSuite"
+burpsuite_extras_dir: "/home/{{ ansible_user_id }}/BurpSuitePro/extras"
 burpsuite_extras_jars:
   jruby:
     jar: jruby-complete.jar

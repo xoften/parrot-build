@@ -17,10 +17,14 @@
 - name: "Installing subfinder"
   shell: go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
 
-- name: "Installing Naabu"
+- name: "Installing Dependencies to Naabu"
   package: 
     name: 
       - libpcap-dev
+  become: true
+  become_method: sudo
+  
+- name: "Installing Naabu"
   shell: go install -v github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
 
 - name: "Installing httpx"

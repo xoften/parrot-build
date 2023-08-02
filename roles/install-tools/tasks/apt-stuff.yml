@@ -12,63 +12,67 @@
 - name: "Installing Packages"
   package:
     name:
-      - jq
-      - pipx
-      - ntpdate
-      - flameshot
-      - exiftool
-      - gdb
-      - golang
-      - git
-      - pandoc
-      - build-essential
-      - libpcap-dev
-      - libusb-1.0-0-dev
-      - libnetfilter-queue-dev
-      - libglib2.0-dev
-      - wireless-tools
       - aircrack-ng
-      - tshark
-      - reaver
-      - bully
-      - cowpatty
-      - gcc
-      - make
-      - cewl
-      - dos2unix
-      - htop
-      - open-iscsi
-      - nfs-common
-      - rlwrap
-      - crunch
-      - windows-binaries
-      - powershell
-      - jq
-      - xdotool
-      - eyewitness
-      - neovim
-      - p7zip-full
-      - cifs-utils
-      - dnsmasq
-      - dnsutils
-      - net-tools
-      - tmux
+      - amass
+      - apt-transport-https
       - build-essential
-      - ldap-utils
-      - smbclient
+      - build-essential
+      - bully
+      - cewl
       - chromium
       - chromium-common
-      - dos2unix
-      - apt-transport-https
-      - masscan
-      - sshuttle
-      - flameshot
-      - openssl
-      - neo4j
-      - mingw-w64
+      - cifs-utils
+      - cowpatty
+      - crunch
+      - dnsmasq
       - dnsrecon
+      - dnsutils
+      - dos2unix
+      - dos2unix
+      - exiftool
+      - eyewitness
+      - flameshot
+      - flameshot
+      - gcc
+      - gdb
+      - git
+      - golang
+      - htop
+      - jq
+      - jq
       - jsbeautifier
+      - ldap-utils
+      - libglib2.0-dev
+      - libnetfilter-queue-dev
+      - libpcap-dev
+      - libusb-1.0-0-dev
+      - make
+      - masscan
+      - mingw-w64
+      - neo4j
+      - neovim
+      - net-tools
+      - nfs-common
+      - ntpdate
+      - open-iscsi
+      - openssl
+      - p7zip-full
+      - pandoc
+      - pipx
+      - powershell
+      - reaver
       - responder
+      - rlwrap
+      - smbclient
+      - sshuttle
+      - tmux
+      - tshark
+      - windows-binaries
+      - wireless-tools
+      - xdotoo
+      - ffmpeg
+      - wpscan
+      
     state: latest
   become: true
   become_method: sudo

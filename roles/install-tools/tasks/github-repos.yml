@@ -35,6 +35,9 @@
     - { repo: "WithSecureLabs/chainsaw",  regex: "chainsaw_all_", location: "/opt/" }
     - { repo: "BloodHoundAD/BloodHound", regex: "BloodHound-linux-x64.zip", location: "/opt/" }
     - { repo: "trufflesecurity/trufflehog", regex: "_linux_amd64.tar.gz", location: "/opt/" }
+    - { repo: "gentilkiwi/mimikatz", regex: "mimikatz_trunk.zip", location: "/opt/"}
+    - { repo: "DominicBreuker/pspy", regex: "pspy32", location: "/opt/" }    
+    - { repo: "DominicBreuker/pspy", regex: "pspy64", location: "/opt/" }
   async: 45
   poll: 0
   become: true

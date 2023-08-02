@@ -9,13 +9,13 @@
     - { name: 'crackmapexec', url: 'git+https://github.com/mpgn/CrackMapExec.git' }
     - { name: 'certipy-ad', url: 'git+https://github.com/ly4k/Certipy.git' }
 
-- name: "Install coercer in virtual enviroment"
+- name: "Installing tools that need virtual environments"
   ansible.builtin.pip:
-    name: coercer
-    virtualenv: "{{(lookup('env','HOME'))}}/tools/coercer"
+    name: "{{ item.name }}"
+    virtualenv: "{{(lookup('env','HOME'))}}/opt/{{ item.name}}"
+  loop:
+    - { name: 'lsassy'}
 
-- name: "test"
+- name: "Installing python tools that does NOT need virtual environments"
   ansible.builtin.pip:
-    name: coercer
-    msg: "{{ name.name }}"
-    
+    name: arsenal-cli
