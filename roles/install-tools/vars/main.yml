@@ -1,2 +1,3 @@
 ---
 # vars file for install-tools
+tools_dir: "/home/{{ ansible_user_id }}/tools"

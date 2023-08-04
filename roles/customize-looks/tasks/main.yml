@@ -7,7 +7,7 @@
 - name: "Add settings to visual studio code"
   copy:
     src: "{{ role_path }}/files/settings.json"
-    dest: "{{ ansible_env.HOME }}.config/Code/User/settings.json"
+    dest: "{{ ansible_env.HOME }}/.config/Code/User/settings.json"
 
 - name: "Add wallpaper to system"
   copy:

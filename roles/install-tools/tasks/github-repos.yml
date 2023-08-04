@@ -1,13 +1,16 @@
 ---
+- name: Creates tools directory if it does not exist
+  ansible.builtin.file:
+    path: "{{ tools_dir }}"
+    state: directory
+
 - name: "Installing useful github repos"
   git:
     repo: "{{ item.repo }}"
     dest: "{{ item.location }}"
   loop:
-    - { repo: "https://github.com/Flangvik/SharpCollection", location: "/opt/SharpCollection" }
-    - { repo: "https://github.com/danielmiessler/SecLists", location: "/opt/SecLists" }
-  become: true
-  become_method: sudo
+    - { repo: "https://github.com/Flangvik/SharpCollection", location: "{{ tools_dir }}/SharpCollection" }
+    - { repo: "https://github.com/danielmiessler/SecLists", location: "{{ tools_dir }}/SecLists" }
 
 - name: Create temporary build directory
   ansible.builtin.tempfile:
@@ -18,30 +21,24 @@
   copy:
     src: "files/githubdownload.py"
     dest: "{{ build_dir.path }}/githubdownload.py"
-    owner: root
-    group: root
     mode: 0755
-  become: true
-  become_method: sudo
 
 - name: "Downloading github releases"
   shell: "{{ build_dir.path }}/githubdownload.py {{ item.repo }} {{ item.regex }} {{ item.location }} {% if item.filename is defined %}{{ item.filename }}{% endif %}"
   loop:
-    - { repo: "jpillora/chisel",  regex: "_linux_amd64.gz", location: "/opt/chisel" }
-    - { repo: "jpillora/chisel",  regex: "_windows_amd64.gz", location: "/opt/chisel" }
+    - { repo: "jpillora/chisel",  regex: "_linux_amd64.gz", location: "{{ tools_dir }}/chisel" }
+    - { repo: "jpillora/chisel",  regex: "_windows_amd64.gz", location: "{{ tools_dir }}/chisel" }
     #- { repo: "jpillora/chisel",  regex: "_darwin_amd64", location: "/opt/chisel", filename: "chisel_osx" }
-    - { repo: "carlospolop/PEASS-ng",  regex: "linpeas.sh", location: "/opt/peas" }
-    - { repo: "carlospolop/PEASS-ng",  regex: "winPEASx64.exe", location: "/opt/peas" }
-    - { repo: "WithSecureLabs/chainsaw",  regex: "chainsaw_all_", location: "/opt/" }
-    - { repo: "BloodHoundAD/BloodHound", regex: "BloodHound-linux-x64.zip", location: "/opt/" }
-    - { repo: "trufflesecurity/trufflehog", regex: "_linux_amd64.tar.gz", location: "/opt/" }
-    - { repo: "gentilkiwi/mimikatz", regex: "mimikatz_trunk.zip", location: "/opt/"}
-    - { repo: "DominicBreuker/pspy", regex: "pspy32", location: "/opt/" }    
-    - { repo: "DominicBreuker/pspy", regex: "pspy64", location: "/opt/" }
+    - { repo: "carlospolop/PEASS-ng",  regex: "linpeas.sh", location: "{{ tools_dir }}/peas" }
+    - { repo: "carlospolop/PEASS-ng",  regex: "winPEASx64.exe", location: "{{ tools_dir }}/peas" }
+    - { repo: "WithSecureLabs/chainsaw",  regex: "chainsaw_all_", location: "{{ tools_dir }}/" }
+    - { repo: "BloodHoundAD/BloodHound", regex: "BloodHound-linux-x64.zip", location: "{{ tools_dir }}/" }
+    - { repo: "trufflesecurity/trufflehog", regex: "_linux_amd64.tar.gz", location: "{{ tools_dir }}/" }
+    - { repo: "gentilkiwi/mimikatz", regex: "mimikatz_trunk.zip", location: "{{ tools_dir }}/mimikatz"}
+    - { repo: "DominicBreuker/pspy", regex: "pspy32", location: "{{ tools_dir }}/" }    
+    - { repo: "DominicBreuker/pspy", regex: "pspy64", location: "{{ tools_dir }}/" }
   async: 45
   poll: 0
-  become: true
-  become_method: sudo
 
 - name: Remove temporary build directory
   ansible.builtin.file:

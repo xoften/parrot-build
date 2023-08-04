@@ -122,7 +122,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
     alias diff='diff --color=auto'
     alias ip='ip --color=auto'
-    alias vim='nvim'
 
     export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
     export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
@@ -139,7 +138,9 @@ fi
 # some more ls aliases
 alias ll='ls -l'
 alias la='ls -A'
+alias lla='ls -la'
 alias l='ls -CF'
+alias vim='nvim'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -168,15 +169,22 @@ function vim () {
     fi
 }
 
-if [[ ! $SCRIPT_RUNNING ]] && [[ $TMUX ]]  ; then
-    export SCRIPT_RUNNING=1
-    tmuxSession="$(tmux display-message -p '#S')"
-    tmuxWindow="$(tmux display-message -p '#I')"
-    mkdir $HOME/logs 2>/dev/null
-    logname="Tmux_session_${tmuxSession}_Tmux_window_${tmuxWindow}_$(date '+%Y-%m-%d_%H:%M:%S').tmux.log"
-    script -f $HOME/logs/${logname}
-fi
+log_command() {
+    
+    logger -p local6.debug "running command: $BASH_COMMAND" 
 
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux
+}
+# Trap the DEBUG signal and call the log_command function
+trap 'log_command' DEBUG 
+
+if [[ ! $SSH_CONNECTION ]]; then
+	if [[ ! $(tmux list-sessions) ]]; then
+		if [[ "$TMUX" = "" ]]; then
+			tmux;
+		fi
+	else 
+		if [[ "$TMUX" = "" ]]; then
+			tmux attach
+		fi
+	fi
 fi

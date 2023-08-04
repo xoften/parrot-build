@@ -1,13 +1,13 @@
 ---
 - name: "Downloading tooling/files via HTTP"
   ansible.builtin.get_url:
-    url: {{ item.url }}
-    dest: {{ item.folder}}
+    url: "{{ item.url }}"
+    dest: "{{ item.folder}}"
     # TODO: We can add some checksum check, however it would need some manual work.
   loop:
-    - { url: "https://gist.githubusercontent.com/superkojiman/11076951/raw/053152dba6c5cc3107ff0374ce7246306958d72c/namemash.py", folder: "/opt/namemash.py" }
-    - { url: "https://raw.githubusercontent.com/initstring/passphrase-wordlist/master/hashcat-rules/passphrase-rule1.rule", folder: "/opt/small-hashcat.rule" }
-    - { url: "https://raw.githubusercontent.com/initstring/passphrase-wordlist/master/hashcat-rules/passphrase-rule2.rule", folder: "/opt/extreme-hascat.rule" }
-    - { url: "https://gist.githubusercontent.com/jhaddix/86a06c5dc309d08580a018c66354a056/raw/96f4e51d96b2203f19f6381c8c545b278eaa0837/all.txt", folder: "/opt/jhaddix.txt" }
-    - { url: "https://raw.githubusercontent.com/aels/subdirectories-discover/main/dsstorewordlist.txt", folder: "/opt/dsstorewordlist.txt" }
-    - { url: "https://raw.githubusercontent.com/huntergregal/mimipenguin/master/mimipenguin.py", folder: "/opt/mimipenguin.py" }
+    - { url: "https://gist.githubusercontent.com/superkojiman/11076951/raw/053152dba6c5cc3107ff0374ce7246306958d72c/namemash.py", folder: "{{ tools_dir }}/namemash.py" }
+    - { url: "https://raw.githubusercontent.com/initstring/passphrase-wordlist/master/hashcat-rules/passphrase-rule1.rule", folder: "{{ tools_dir }}/small-hashcat.rule" }
+    - { url: "https://raw.githubusercontent.com/initstring/passphrase-wordlist/master/hashcat-rules/passphrase-rule2.rule", folder: "{{ tools_dir }}/extreme-hascat.rule" }
+    - { url: "https://gist.githubusercontent.com/jhaddix/86a06c5dc309d08580a018c66354a056/raw/96f4e51d96b2203f19f6381c8c545b278eaa0837/all.txt", folder: "{{ tools_dir }}/jhaddix.txt" }
+    - { url: "https://raw.githubusercontent.com/aels/subdirectories-discover/main/dsstorewordlist.txt", folder: "{{ tools_dir }}/dsstorewordlist.txt" }
+    - { url: "https://raw.githubusercontent.com/huntergregal/mimipenguin/master/mimipenguin.py", folder: "{{ tools_dir }}/mimipenguin.py" }

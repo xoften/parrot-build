@@ -6,8 +6,8 @@
   become_method: sudo
 
 - name: "Configure Audit Rules"
-  copy:
-    src: audit.rules
+  ansible.builtin.get_url:
+    src: https://raw.githubusercontent.com/Neo23x0/auditd/master/audit.rules
     dest: /etc/audit/rules.d/audit.rules
     owner: root
     group: root

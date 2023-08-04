@@ -1,4 +1,9 @@
 ---
+- name: Creates tools directory if it does not exist
+  ansible.builtin.file:
+    path: "{{ tools_dir }}"
+    state: directory
+
 - name: "Install pipx tools"
   community.general.pipx:
     name: "{{ item.name }}"
@@ -12,7 +17,7 @@
 - name: "Installing tools that need virtual environments"
   ansible.builtin.pip:
     name: "{{ item.name }}"
-    virtualenv: "{{(lookup('env','HOME'))}}/opt/{{ item.name}}"
+    virtualenv: "{{ tools_dir }}/{{ item.name}}"
   loop:
     - { name: 'lsassy'}
 

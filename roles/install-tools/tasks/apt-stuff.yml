@@ -30,7 +30,7 @@
       - dos2unix
       - dos2unix
       - exiftool
-      - eyewitness
+      - ffmpeg
       - flameshot
       - flameshot
       - gcc
@@ -61,6 +61,7 @@
       - pipx
       - powershell
       - reaver
+      - remmina
       - responder
       - rlwrap
       - smbclient
@@ -69,10 +70,8 @@
       - tshark
       - windows-binaries
       - wireless-tools
-      - xdotoo
-      - ffmpeg
       - wpscan
-      
+      - xdotool
     state: latest
   become: true
   become_method: sudo
